@@ -17,12 +17,11 @@
 int show_Menu()
 {
     int opc;
-    printf("MENU\n\n");
-    printf("ACOES\n");
-    printf("1 - CONSULTAR CONTATO\n");
-    printf("2 - INCLUIR CONTATO\n");
-    printf("3 - EXCLUIR CONTATO\n");
-    printf("4 - SAIR\n");
+    printf("______MENU______\n\n");
+    printf("|1 - CONSULTAR CONTATO\n");
+    printf("|2 - INCLUIR CONTATO\t");
+    printf("|3 - EXCLUIR CONTATO\t");
+    printf("|4 - SAIR\n");
     printf("Opcao: ");
     scanf("%i", &opc);
     fflush(stdin);
