@@ -7,6 +7,7 @@
 #include "../include/contacts.h"
 #include "../include/validators.h"
 #include "../include/add_Contact_Logic.h"
+#include "../include/delete_Contact_Logic.h"
 
 // BIBLIOTECAS UTILIZADAS
 #include <stdio.h>
@@ -19,7 +20,7 @@ void runApp()
 {
     Contato contatos[QTY] = {{"Ana Clara", "47996235"}};
     char name[50], phone[15];
-    int opc, exist;
+    int opc;
     bool ok;
 
     while (1)
@@ -42,26 +43,7 @@ void runApp()
             break;
         case 4:
             system("clear");
-            // Deletar
-            do
-            {
-                printf("----Exclusão de contatos-----\n");
-                printf("Nome do contato: ");
-                fgets(name, sizeof(name), stdin);
-                name[strcspn(name, "\n")] = '\0'; // remove o \n
-
-                exist = contact_Exists(name, contatos);
-
-                if (!exist)
-                {
-                    printf("Erro: Contato não existe!!\n");
-                    // system("clear");
-                }
-
-            } while (exist == 0);
-
-            // Deleta no array
-            delete_Contact(name, contatos);
+            delete_Contact_Logic(contatos);
             break;
 
         case 5:

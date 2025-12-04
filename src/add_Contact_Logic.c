@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>  //Biblioteca de string
 #include <stdbool.h> //Permite tipos booleano
-#include <unistd.h>  // #include <windows.h> //No windows
 
 // Repete até o usuário digitar um contato que não existe
 void add_Contact_Logic(Contato *contatos)
@@ -22,7 +21,7 @@ void add_Contact_Logic(Contato *contatos)
     {
         do // Repete até ele digitar um nome válido
         {
-            printf("----Inclusão de contatos-----\n");
+            printf("----ADICIONAR CONTATO-----\n");
             printf("Nome do novo contato: ");
             fgets(name, sizeof(name), stdin);
             name[strcspn(name, "\n")] = '\0'; // remove o \n
