@@ -2,13 +2,13 @@
 // ESTUDANTES: HENRIQUE S., YAGO,YURI, GABRIEL FLÔR, EMANOEl.
 
 // BIBLIOTECAS UTILIZADAS
-#include <unistd.h>  // #include <windows.h> //No windows
-#include <stdio.h>   //Lib Padrão
-#include <stdlib.h>  //Lib Padrão
-#include "contato.h" //Incluo o struct Contato que criei em outro arquivo
-#include <string.h>  //Biblioteca de string
+#include <stdio.h>  //Lib Padrão
+#include <stdlib.h> //Lib Padrão
+#include <unistd.h> // #include <windows.h> //No windows
+#include <string.h> //Biblioteca de string
+#include "main.h"   //Incluo o struct Contato que criei em outro arquivo
 
-#define QTD 10 // Quantidade de contatos possíveis
+#define QTY 10 // Quantidade de contatos possíveis
 int used = 1;  // Defino uma variavél global para saber a quantidade de posicoes do meu array Contatos
 
 // Função que mostra o menu e retorna a opção escolhida pelo usuário
@@ -34,19 +34,18 @@ int show_Menu()
 // Mostrar lista de Contatos
 void show_Contats(Contato *c)
 {
-    system("clear"); // Clear para Linux
+    system("clear"); // cls para windows
 
     printf("----Lista de Contatos----\n\n");
     for (int i = 0; i < used; i++)
     {
         printf("---CONTATO %i---\n", i + 1);
         printf("Nome: %s\n", c[i].name);
-        printf("Idade: %i\n", c[i].age);
+        printf("Telefone: %i\n", c[i].phone);
     }
 }
 
-// FUNCÃO ADICIONAR CONTATO
-
+// Função que verifica se contato ja existe no array
 int contact_Exists(char name[], Contato *c)
 {
     // Verifica se já existe no array
@@ -58,12 +57,12 @@ int contact_Exists(char name[], Contato *c)
     }
     return 0; // False
 }
-
-void add_Contacts(char name[], int age, Contato *c)
+// FUNCÃO ADICIONAR CONTATO
+void add_Contacts(char name[], int phone, Contato *c)
 {
 
     strcpy(c[used].name, name);
-    c[used].age = age;
+    c[used].phone = phone;
 
     used++;
     printf("Contato '%s' adicionado a lista de contatos!!\n", name);
@@ -98,9 +97,9 @@ void delete_Contact(char name[], Contato *c)
 // FUNÇÃO PRINCIPAL
 int main(void)
 {
-    int opc = 0, age = 0, exist;
+    int opc = 0, phone = 0, exist;
     char temp[10], name[50];
-    Contato c[QTD] = {{"Ana Clara", 19}};
+    Contato c[QTY] = {{"Ana Clara", 19}};
 
     while (opc != 4)
     {
@@ -142,12 +141,12 @@ int main(void)
 
             } while (exist == 1);
 
-            printf("Digite a idade: ");
+            printf("Digite o Telefone: ");
             fgets(temp, 10, stdin);
-            age = atoi(temp);
+            phone = atoi(temp);
 
             // Adiciona no array
-            add_Contacts(name, age, c);
+            add_Contacts(name, phone, c);
             break;
         case 3:
             // Deletar
