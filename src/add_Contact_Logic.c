@@ -21,8 +21,10 @@ void add_Contact_Logic(Contato *contatos)
     {
         do // Repete até ele digitar um nome válido
         {
-            printf("----ADICIONAR CONTATO-----\n");
-            printf("Nome do novo contato: ");
+            printf("|=============================================|\n");
+            printf("|               ADICIONAR CONTATO             |\n");
+            printf("|=============================================|\n\n");
+            printf("NOME: ");
             fgets(name, sizeof(name), stdin);
             name[strcspn(name, "\n")] = '\0'; // remove o \n
 
@@ -31,7 +33,10 @@ void add_Contact_Logic(Contato *contatos)
                 ok = true;
             else if (!validate_Name(name))
             {
-                printf("Nome inválido!\n");
+                system("clear"); // cls no windows
+                printf("|=============================================|\n");
+                printf("|               NOME INVALIDO!!               |\n");
+                printf("|=============================================|\n\n");
                 ok = false;
             }
 
@@ -44,7 +49,10 @@ void add_Contact_Logic(Contato *contatos)
         exist = contact_Exists(name, contatos);
         if (exist)
         {
-            printf("Erro: Contato ja existe!!\n");
+            system("clear"); // cls no windows
+            printf("|=============================================|\n");
+            printf("|         ERRO: CONTATO JA EXISTE!            |\n");
+            printf("|=============================================|\n\n");
             // system("clear"); // cls para windows
         }
 
@@ -52,7 +60,7 @@ void add_Contact_Logic(Contato *contatos)
 
     while (ok != true) // Repete até ele digitar um numero válido
     {
-        printf("Digite o Telefone: ");
+        printf("TELEFONE: ");
         fgets(phone, sizeof(phone), stdin);
         phone[strcspn(phone, "\n")] = '\0'; // remove o \n
 
@@ -61,8 +69,10 @@ void add_Contact_Logic(Contato *contatos)
         else if (!validate_Phone(phone))
         {
             system("clear"); // cls no windows
-            printf("Número de telefone inválido!!\n");
-            printf("Número tem que ter mais de 8 digitos!!\n");
+            printf("|=============================================|\n");
+            printf("|           ERRO: NUMERO INVALIDO             |\n");
+            printf("|=============================================|\n\n");
+            // printf("Número tem que ter mais de 8 digitos!!\n");
             ok = false;
         }
     }

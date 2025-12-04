@@ -35,7 +35,7 @@ void runApp()
             break;
         case 2:
             system("clear");
-            // Lógica de pesquisar
+            // Adicionar Lógica de pesquisar
             break;
         case 3:
             system("clear");
@@ -48,7 +48,9 @@ void runApp()
 
         case 5:
             system("clear");
-            printf("Até logo!\n");
+            printf("|===================|\n");
+            printf("|ATÉ LOGO!!         |\n");
+            printf("|===================|\n");
             return;
 
         default:

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h> // #include <windows.h> //No windows
 #include <stdlib.h>
-
+#include "main.h"
 int used = 1;
 
 // Mostrar lista de Contatos
@@ -11,12 +11,18 @@ void show_Contacts(Contato *c)
 {
     system("clear"); // cls para windows
 
-    printf("----Lista de Contatos----\n\n");
+    printf("|=============================================|\n");
+    printf("|              LISTA DE CONTATOS              |\n");
+    printf("|=============================================|\n\n");
+
     for (int i = 0; i < used; i++)
     {
-        printf("---CONTATO %i---\n", i + 1);
-        printf("Nome: %s\n", c[i].name);
-        printf("Telefone: %s\n", c[i].phone);
+        printf("|=============================================|\n");
+        printf("|               CONTATO %i                     |\n", i + 1);
+        printf("|---------------------------------------------|\n");
+        printf("| Nome: %-38s|\n", c[i].name);
+        printf("| Telefone: %-34s|\n", c[i].phone);
+        printf("|=============================================|\n\n");
     }
 }
 
@@ -27,7 +33,6 @@ int contact_Exists(char name[], Contato *c)
     for (int i = 0; i < used; i++)
     {
         if (strcmp(c[i].name, name) == 0)
-
             return 1; // True
     }
     return 0; // False
@@ -36,17 +41,18 @@ int contact_Exists(char name[], Contato *c)
 // Adiciona no array
 void add_Contact(char name[], char phone[], Contato *c)
 {
-
     strcpy(c[used].name, name);
     strcpy(c[used].phone, phone);
 
     used++;
-    printf("Contato '%s' adicionado a lista de contatos!!\n", name);
+    printf("|=============================================|\n");
+    printf("   '%s' ADICIONADO À LISTA DE CONTATOS!        \n", name);
+    printf("|=============================================|\n\n");
 
-    sleep(2); // No Linux é segundos, Windows: milisegundos
+    blink_loading();
 
     show_Contacts(c);
-};
+}
 
 // Deleta no array e organiza
 void delete_Contact(char name[], Contato *c)
@@ -56,7 +62,6 @@ void delete_Contact(char name[], Contato *c)
     {
         if (strcmp(c[i].name, name) == 0)
         {
-
             // Reorganizar array
             for (int j = i + 1; j < used; j++)
             {
@@ -65,8 +70,10 @@ void delete_Contact(char name[], Contato *c)
 
             used--;
             system("clear"); // cls para windows
-            printf("'%s' foi excluido(a) da sua lista de contatos!!\n", name);
-            sleep(2); // No Linux é segundos, Windows: milisegundos
+            printf("|=============================================|\n");
+            printf("'%s' FOI EXCLUIDO(A) DA LISTA DE CONTATOS! \n", name);
+            printf("|=============================================|\n\n");
+            blink_loading();
             show_Contacts(c);
         }
     }

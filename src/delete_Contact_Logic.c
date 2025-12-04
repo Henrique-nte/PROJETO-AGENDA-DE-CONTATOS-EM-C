@@ -1,5 +1,5 @@
 // PROJETO AGENDA EM C
-// ESTUDANTES: HENRIQUE S., YAGO,YURI, GABRIEL FLÔR, EMANOEl.
+// ESTUDANTES: HENRIQUE S., YAGO, YURI, GABRIEL FLÔR, EMANOEL.
 
 // CABEÇALHOS
 #include "../include/main.h"
@@ -11,32 +11,39 @@
 // BIBLIOTECAS UTILIZADAS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>  //Biblioteca de string
-#include <stdbool.h> //Permite tipos booleano
-#include <unistd.h>  // #include <windows.h> //No windows
+#include <string.h>  // Biblioteca de string
+#include <stdbool.h> // Permite tipos booleanos
+#include <unistd.h>  // Linux (Windows usa <windows.h>)
 
+// Função de lógica para deletar contato
 void delete_Contact_Logic(Contato *contatos)
 {
     char name[50];
     int exist;
-    // Deletar
+
     do
     {
-        printf("----DELETAR CONTATO-----\n");
-        printf("Nome do contato: ");
+        // system("clear"); // cls no Windows
+        printf("|=============================================|\n");
+        printf("|               EXCLUIR CONTATO               |\n");
+        printf("|=============================================|\n\n");
+
+        printf("NOME: ");
         fgets(name, sizeof(name), stdin);
-        name[strcspn(name, "\n")] = '\0'; // remove o \n
+        name[strcspn(name, "\n")] = '\0'; // remove o \n ao final
 
         exist = contact_Exists(name, contatos);
 
         if (!exist)
         {
-            printf("Erro: Contato não existe!!\n");
-            // system("clear");
+            system("clear"); // cls no windows
+            printf("|=============================================|\n");
+            printf("|        ERRO: CONTATO NAO ENCONTRADO         |\n");
+            printf("|=============================================|\n\n");
         }
 
     } while (exist == 0);
 
-    // Deleta no array
+    // Quando existe, efetua a exclusão
     delete_Contact(name, contatos);
 }
