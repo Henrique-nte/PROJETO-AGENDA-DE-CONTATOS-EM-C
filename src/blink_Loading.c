@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <unistd.h> // Linux. No Windows usar Sleep()
+#include <unistd.h> // Linux. No Windows windows.h
 
 void blink_loading()
 {
@@ -7,10 +7,10 @@ void blink_loading()
     {
         printf("...\r");
         fflush(stdout);
-        usleep(300000);
+        usleep(200000);
 
         printf("             \r"); // limpa a linha
         fflush(stdout);
-        usleep(300000);
+        usleep(200000);
     }
 }

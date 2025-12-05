@@ -16,21 +16,13 @@
 #include <stdbool.h> //Permite tipos booleano
 #include <unistd.h>  // #include <windows.h> //No windows
 
+extern char clear_Command[]; // "clear" Para linux e "cls" para windows
+extern int used;
+
 void runApp()
 {
-    Contato contatos[QTY] = {
-        {"Ana Clara", "47996235"},
-        {"Carlos Eduardo", "47996235"},
-        {"Alexandre", "47996235"},
-        {"Jeferson Rodrigues", "47996235"},
-        {"Eduardo Padilha", "47996239"},
-        {"Juliana Chagas", "47944231"},
-        {"Lucas Rodrigo", "47923235"},
-        {"Luiz Felipe", "47996235"},
-        {"Henrique Santos", "47996235"},
-        {"Yago manjarola", "47996235"},
-    };
-    char name[50], phone[15];
+    Contato contatos[QTY];
+    char name[50];
     int opc;
     bool ok;
 
@@ -41,35 +33,70 @@ void runApp()
         switch (opc)
         {
         case 1:
-            system("clear"); // cls para windows
+            if (used == 0) // Array vazio
+            {
+                system(clear_Command);
+                printf("|=======================================================|\n");
+                printf("|                LISTA VAZIA!!                          |\n");
+                printf("|=======================================================|\n\n");
+                break;
+            }
+            system(clear_Command);
             show_Contacts(contatos);
             break;
         case 2:
-            system("clear");
-            // Adicionar Lógica de pesquisar
+            if (used == 0) // Array vazio
+            {
+                system(clear_Command);
+                printf("|=======================================================|\n");
+                printf("|                LISTA VAZIA!!                          |\n");
+                printf("|=======================================================|\n\n");
+                break;
+            }
+
+            system(clear_Command);
+            printf("|=======================================================|\n");
+            printf("|               DIGITE O CONTATO                        |\n");
+            printf("|=======================================================|\n\n");
+            printf("Nome: ");
+            fgets(name, sizeof(name), stdin);
+            name[strcspn(name, "\n")] = '\0'; // remove o \n
+
+            find_contact_by_name(name, contatos);
+
             break;
         case 3:
-            system("clear");
+            system(clear_Command);
             add_Contact_Logic(contatos);
             break;
         case 4:
-            system("clear");
+
+            if (used == 0) // Array vazio
+            {
+                system(clear_Command);
+                printf("|=======================================================|\n");
+                printf("|                LISTA VAZIA!!                          |\n");
+                printf("|=======================================================|\n\n");
+                break;
+            }
+
+            system(clear_Command);
             delete_Contact_Logic(contatos);
             break;
 
         case 5:
-            system("clear");
-            printf("|===================|\n");
-            printf("|ATÉ LOGO!!         |\n");
-            printf("|===================|\n");
+            system(clear_Command);
+            printf("|====================================|\n");
+            printf("|         ATE LOGO!!                 |\n");
+            printf("|====================================|\n");
             return;
 
         default:
-            system("clear");
-
-            printf("|=============================================|\n");
-            printf("|               OPÇÃO INVÁLIDA!!              |\n");
-            printf("|=============================================|\n\n");
+            system(clear_Command);
+            printf("|=======================================================|\n");
+            printf("|               OPCAO INVALIDA!!                        |\n");
+            printf("|=======================================================|\n\n");
+            break;
         }
     }
 }

@@ -2,6 +2,7 @@
 #include "../include/contacts.h"
 #include "../include/validators.h"
 #include "../include/add_Contact_Logic.h"
+#include "../include/main.h"
 
 // BIBLIOTECAS UTILIZADAS
 #include <stdio.h>
@@ -9,10 +10,11 @@
 #include <string.h>  //Biblioteca de string
 #include <stdbool.h> //Permite tipos booleano
 
+extern char clear_Command[];
+
 // Repete até o usuário digitar um contato que não existe
 void add_Contact_Logic(Contato *contatos)
 {
-
     char name[50], phone[15];
     int opc, exist;
     bool ok;
@@ -21,22 +23,21 @@ void add_Contact_Logic(Contato *contatos)
     {
         do // Repete até ele digitar um nome válido
         {
-            printf("|=============================================|\n");
-            printf("|               ADICIONAR CONTATO             |\n");
-            printf("|=============================================|\n\n");
+            printf("|=======================================================|\n");
+            printf("|               ADICIONAR CONTATO                       |\n");
+            printf("|=======================================================|\n\n");
             printf("NOME: ");
             fgets(name, sizeof(name), stdin);
             name[strcspn(name, "\n")] = '\0'; // remove o \n
 
             if (validate_Name(name))
-
                 ok = true;
             else if (!validate_Name(name))
             {
-                system("clear"); // cls no windows
-                printf("|=============================================|\n");
-                printf("|               NOME INVALIDO!!               |\n");
-                printf("|=============================================|\n\n");
+                system(clear_Command);
+                printf("|=======================================================|\n");
+                printf("|               NOME INVALIDO!!                         |\n");
+                printf("|=======================================================|\n\n");
                 ok = false;
             }
 
@@ -49,13 +50,11 @@ void add_Contact_Logic(Contato *contatos)
         exist = contact_Exists(name, contatos);
         if (exist)
         {
-            system("clear"); // cls no windows
-            printf("|=============================================|\n");
-            printf("|         ERRO: CONTATO JA EXISTE!            |\n");
-            printf("|=============================================|\n\n");
-            // system("clear"); // cls para windows
+            system(clear_Command);
+            printf("|=======================================================|\n");
+            printf("|         ERRO: CONTATO JA EXISTE!                      |\n");
+            printf("|=======================================================|\n\n");
         }
-
     } while (exist != 0); // Enquanto oque ele digitar ja estiver no array
 
     while (ok != true) // Repete até ele digitar um numero válido
@@ -68,10 +67,10 @@ void add_Contact_Logic(Contato *contatos)
             ok = true;
         else if (!validate_Phone(phone))
         {
-            system("clear"); // cls no windows
-            printf("|=============================================|\n");
-            printf("|           ERRO: NUMERO INVALIDO             |\n");
-            printf("|=============================================|\n\n");
+            system(clear_Command);
+            printf("|=======================================================|\n");
+            printf("|           ERRO: NUMERO INVALIDO                       |\n");
+            printf("|=======================================================|\n\n");
             // printf("Número tem que ter mais de 8 digitos!!\n");
             ok = false;
         }

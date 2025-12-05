@@ -15,6 +15,8 @@
 #include <stdbool.h> // Permite tipos booleanos
 #include <unistd.h>  // Linux (Windows usa <windows.h>)
 
+extern char clear_Command[]; // "clear" Para linux e "cls" para windows
+
 // Função de lógica para deletar contato
 void delete_Contact_Logic(Contato *contatos)
 {
@@ -23,10 +25,10 @@ void delete_Contact_Logic(Contato *contatos)
 
     do
     {
-        // system("clear"); // cls no Windows
-        printf("|=============================================|\n");
-        printf("|               EXCLUIR CONTATO               |\n");
-        printf("|=============================================|\n\n");
+
+        printf("|=======================================================|\n");
+        printf("|               EXCLUIR CONTATO                         |\n");
+        printf("|=======================================================|\n\n");
 
         printf("NOME: ");
         fgets(name, sizeof(name), stdin);
@@ -36,10 +38,10 @@ void delete_Contact_Logic(Contato *contatos)
 
         if (!exist)
         {
-            system("clear"); // cls no windows
-            printf("|=============================================|\n");
-            printf("|        ERRO: CONTATO NAO ENCONTRADO         |\n");
-            printf("|=============================================|\n\n");
+            system(clear_Command);
+            printf("|=======================================================|\n");
+            printf("|        ERRO: CONTATO NAO ENCONTRADO                   |\n");
+            printf("|=======================================================|\n\n");
         }
 
     } while (exist == 0);
